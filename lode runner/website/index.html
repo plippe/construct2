@@ -14,70 +14,54 @@
 	
     <!-- This outlines the canvas with a black border and makes the page background black. -->
 	<style type="text/css">
-		body { background-color: black; color: white; }
+		body { background-color: black; color: white; width:1024px; margin: 0px auto; font-family: "Tahoma", "Times New Roman", Times, serif; }
 		canvas { -ms-touch-action: none; }
 	</style>
-
-
 </head> 
  
-<body> 
-	<div id="fb-root"></div>
-	<div style="text-align: center;">
-
-	<script>
-	// Issue a warning if trying to preview an exported project on disk.
-	(function(){
-		// Check for running exported on file protocol
-		if (window.location.protocol.substr(0, 4) === "file")
-		{
-			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
-		}
-	})();
-	</script>
-
-		<!-- The canvas must be inside a div called c2canvasdiv -->
-		<div id="c2canvasdiv" style="margin: 0 auto; width: 1024px; height: 480px;">
-		
-			<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
-			ID the runtime looks for in the jQuery ready event (above). -->
-			<canvas id="c2canvas" width="1024" height="480">
-				<!-- This text is displayed if the visitor's browser does not support HTML5.
-				You can change it, but it is a good idea to link to a description of a browser
-				and provide some links to download some popular HTML5-compatible browsers. -->
-				Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
-				<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
-				<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
-				<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
-				<a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
-				<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/>
-			</canvas>
+<body>
+	<h1>Get the coins</h1>
+	<p>Silly VS game where you must get more coins they the other player.</p>
+	
+	<div id="c2canvasdiv" style="margin: 0 auto; width: 1024px; height: 480px;">
+		<canvas id="c2canvas" width="1024" height="480">
+			Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+			<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
+			<a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
+			<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/>
+		</canvas>		
+	</div>	
+	
+	<h2>Controls</h2>
+	<ul>
+		<li>Player 1 uses the arrow keys</li>
+		<li>Player 2 uses the AWSD keys</li>
+		<li>ESC quits the current level</li>
+	</ul>
+	
+	<h2>Description</h2>
+	<p>
+		To create this multiple resources were used
+		<ul>
+			<li><a href="https://www.scirra.com/construct2">Construct2</a></li>
+			<li><a href="https://github.com/LosKartoflos/LodeRunner">Charater models found on GitHub</a></li>
+			<li><a href="https://projectwerk.khleuven.be/projects/melonjshtml5spel/wiki">Coins found on Project Werk</a></li>
+			<li><a href="http://www.pixeljoint.com/">Floor and ladder found on Pixel Joint</li>
+			<li><a href="http://makepixelart.com/artists/anonymous/rope">Rope was found on Make Pixel Art</a></li>
+			<li><a href="http://wayofthepixel.net/index.php?topic=15211.0">Background was found on Way Of The Pixel</a></li>
+			<li><a href="http://www.freesound.org/">Audio found on FreeSound</a></li>
+		</ul>
+	</p>
+	
+	<p>
+		Don't hesitate to look at the source "code" on <a href="https://github.com/Plippe/construct2/tree/master/lode%20runner">GitHub</a>.
+	</p>
 			
-		</div>
-
-        <br />
-		
-		<!-- SCIRRA LTD LICENSE AGREEMENT
-			 FREE EDITION USERS ARE NOT ALLOWED TO REMOVE, MODIFY OR HIDE THE FOLLOWING
-			 LINES OF HTML5 CODE FROM THEIR EXPORTED GAMES. REMOVAL, MODIFICATION OR
-			 ATTEMPTS TO HIDE THIS MESSAGE WILL BE IN BREACH OF THE FREE EDITION LICENSE
-		-->
-		<a href="http://www.scirra.com" target="_blank" style="font-family:Arial;color:DodgerBlue;" title="Create games">Made with Construct 2 &mdash; the HTML5 game maker</a>
-		<!-- End of Scirra Ltd. free edition limitation -->
-
-	</div>
-	
-	<!-- Pages load faster with scripts at the bottom -->
-	
-	<!-- Construct 2 exported games require jQuery. -->
 	<script src="jquery-2.1.1.min.js"></script>
-
-
-	
-    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
-    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
 	<script src="c2runtime.js"></script>
-
+	
     <script>
 		// Size the canvas to fill the browser viewport.
 		jQuery(window).resize(function() {
