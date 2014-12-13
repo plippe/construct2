@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>RaceEvent</name>
+    <events>
+        <variable constant="0" name="Player1Distance" sid="3271909542163102" static="0" type="number">0</variable>
+        <variable constant="0" name="Player2Distance" sid="8884428034857998" static="0" type="number">0</variable>
+        <variable constant="0" name="Player3Distance" sid="5365872288090675" static="0" type="number">0</variable>
+        <variable constant="0" name="StartTime" sid="7353486783451907" static="0" type="number">0</variable>
+        <variable constant="0" name="Player4Distance" sid="3274850316084853" static="0" type="number">0</variable>
+        <variable comment="The total distance run so far, in pixels." constant="0" name="TotalDistance" sid="6707208266422676" static="0" type="number">0</variable>
+        <variable comment="Counts up to &apos;NextBlock&apos;, at which point a new block is created." constant="0" name="CurrentDistance" sid="5720068118551972" static="0" type="number">0</variable>
+        <variable comment="The distance after which to create the next block." constant="0" name="NextBlock" sid="3086077384323935" static="0" type="number">600</variable>
+        <comment>Make sure everything moves left across the screen (since the default 0 degrees is right)</comment>
+        <event-block sid="9668598743106979">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="524422344549665" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="5425457935974722" type="TiledBackground">
+                    <param id="0" name="Angle">180</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="8225199673988388" type="Block">
+                    <param id="0" name="Angle">180</param>
+                </action>
+                <action id="-21" name="Reset global variables" sid="8149814283516236" type="System" />
+                <action id="-9" name="Set value" sid="932981257723209" type="System">
+                    <param id="0" name="Variable">StartTime</param>
+                    <param id="1" name="Value">time</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Wrap the scrolling background infinitely by moving it back after it&apos;s scrolled the width of the main image to the left.</comment>
+        <event-block sid="9834483226589179">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="4518730014122844" type="TiledBackground">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">-Self.Width / 2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="8647133172327882" type="TiledBackground">
+                    <param id="0" name="X">Self.X + Self.Width / 2</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Keep incrementing the current and total distances, and display the total distance in a text object.</comment>
+        <event-block sid="5095562637799501">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5054160972070472" type="System" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="5526906863519238" type="System">
+                    <param id="0" name="Variable">CurrentDistance</param>
+                    <param id="1" name="Value">Block.Bullet.Speed * dt</param>
+                </action>
+                <action id="-10" name="Add to" sid="8343633067526798" type="System">
+                    <param id="0" name="Variable">TotalDistance</param>
+                    <param id="1" name="Value">Block.Bullet.Speed * dt</param>
+                </action>
+                <action id="0" name="Set text" sid="7686675285947939" type="DistanceDisplay">
+                    <param id="0" name="Text">floor(time - StartTime)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Once CurrentDistance reaches NextBlock, it is time to create a new block.  Create it with a random width and height, then position it just off the right edge of the screen.  Make it move to the left again, then set NextBlock to create another block a random distance after this one.</comment>
+        <event-block sid="5612314537727007">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="1419781913706046" type="System">
+                    <param id="0" name="Variable">CurrentDistance</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">NextBlock</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="8672604007375654" type="System">
+                    <param id="0" name="Object to create">Block</param>
+                    <param id="1" name="Layer">&quot;Game&quot;</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="1482900828079364" type="System">
+                    <param id="0" name="Variable">CurrentDistance</param>
+                    <param id="1" name="Value">NextBlock</param>
+                </action>
+                <action id="-7" name="Set size" sid="9264380356840741" type="Block">
+                    <param id="0" name="Width">100 + random(400)</param>
+                    <param id="1" name="Height">60 + random(180)</param>
+                </action>
+                <action id="-3" name="Set position" sid="9546912513550405" type="Block">
+                    <param id="0" name="X">LayoutWidth</param>
+                    <param id="1" name="Y">LayoutHeight - Self.Height</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="3439782455913251" type="Block">
+                    <param id="0" name="Angle">180</param>
+                </action>
+                <action id="-9" name="Set value" sid="4957157334878823" type="System">
+                    <param id="0" name="Variable">NextBlock</param>
+                    <param id="1" name="Value">Block.Width + 20 + random(200)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Destroy blocks that go off the left of the screen so they don&apos;t keep taking up memory or CPU.</comment>
+        <event-block sid="4027485162580805">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="6141352156625662" type="Block">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="X co-ordinate">-Self.Width</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="9240722386750206" type="Block" />
+            </actions>
+        </event-block>
+        <comment>Due to the acceleration of the platform movement, we need to do some tweaks to make sure the player doesn&apos;t gradually get pushed off to the left of the screen over time.</comment>
+        <event-block sid="3295752646582749">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="7144419314875894" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="7307873398920373" type="Player1">
+                    <param id="0" name="X">min(self.X, scrollx)</param>
+                </action>
+                <action id="-1" name="Set X" sid="5613408418967003" type="Player2">
+                    <param id="0" name="X">min(self.X, scrollx)</param>
+                </action>
+                <action id="-1" name="Set X" sid="739566140275307" type="Player3">
+                    <param id="0" name="X">min(self.X, scrollx)</param>
+                </action>
+                <action id="-1" name="Set X" sid="3045792966698831" type="Player4">
+                    <param id="0" name="X">min(self.X, scrollx)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>While on floor, keep holding the &quot;run right&quot; control, so the character keeps running.</comment>
+        <event-block sid="4490980684231423">
+            <conditions>
+                <condition behavior="Platform" id="2" name="Is on floor" sid="756412569475729" type="Player1" />
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="321617842310108" type="Player1">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On any user input at all, make the character jump.</comment>
+        <event-block any="1" sid="7251037812001849">
+            <conditions>
+                <condition id="2" name="Key is down" sid="1119918478665497" type="Keyboard">
+                    <param id="0" name="Key">65 (A)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="7768705095116134" type="Player1">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If the player falls off the bottom of the screen, save score.</comment>
+        <event-block sid="8386557727474842">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="9939521732252863" type="Player1">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="2850154410606255" type="Player1">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1765046931383502" type="System">
+                    <param id="0" name="Variable">Player1Distance</param>
+                    <param id="1" name="Value">time - StartTime</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="915028870664016" type="Player1">
+                    <param id="0" name="Instance variable">dead</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="9946359719559612" type="Audio">
+                    <param id="0" name="Audio file">moew1</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="814678821259803">
+            <conditions>
+                <condition behavior="Platform" id="5" name="On jump" sid="8207794613964623" type="Player1" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="6397763505349068" type="Player1">
+                    <param id="0" name="Animation">&quot;Jump&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6065389942257264">
+            <conditions>
+                <condition behavior="Platform" id="9" name="On landed" sid="1765298653529105" type="Player1" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="8131398145773442" type="Player1">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>While on floor, keep holding the &quot;run right&quot; control, so the character keeps running.</comment>
+        <event-block sid="2733795649258841">
+            <conditions>
+                <condition behavior="Platform" id="2" name="Is on floor" sid="2697848548926305" type="Player2" />
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="7573941854513626" type="Player2">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On any user input at all, make the character jump.</comment>
+        <event-block any="1" sid="7754586959676888">
+            <conditions>
+                <condition id="2" name="Key is down" sid="5442524852089275" type="Keyboard">
+                    <param id="0" name="Key">70 (F)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="6777573397401419" type="Player2">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If the player falls off the bottom of the screen, save score.</comment>
+        <event-block sid="5088669591744129">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="648332055915582" type="Player2">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="1177929340721371" type="Player2">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1405983117349423" type="System">
+                    <param id="0" name="Variable">Player2Distance</param>
+                    <param id="1" name="Value">time - StartTime</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="5697069297362197" type="Player2">
+                    <param id="0" name="Instance variable">dead</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="4542810965232242" type="Audio">
+                    <param id="0" name="Audio file">moew2</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2537257085429565">
+            <conditions>
+                <condition behavior="Platform" id="5" name="On jump" sid="8576007025397388" type="Player2" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="4044945051844634" type="Player2">
+                    <param id="0" name="Animation">&quot;Jump&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7543506793882248">
+            <conditions>
+                <condition behavior="Platform" id="9" name="On landed" sid="8236872642908543" type="Player2" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="147197745684687" type="Player2">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>While on floor, keep holding the &quot;run right&quot; control, so the character keeps running.</comment>
+        <event-block sid="5247482208065496">
+            <conditions>
+                <condition behavior="Platform" id="2" name="Is on floor" sid="9795612969681106" type="Player3" />
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="3828326820352027" type="Player3">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On any user input at all, make the character jump.</comment>
+        <event-block any="1" sid="2606824751356469">
+            <conditions>
+                <condition id="2" name="Key is down" sid="6650006284923023" type="Keyboard">
+                    <param id="0" name="Key">74 (J)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="2341533068295765" type="Player3">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If the player falls off the bottom of the screen, save score.</comment>
+        <event-block sid="2542877236199267">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="4413294760401513" type="Player3">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="6466857739028477" type="Player3">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4599604970169821" type="System">
+                    <param id="0" name="Variable">Player3Distance</param>
+                    <param id="1" name="Value">time - StartTime</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="5210638014642285" type="Player3">
+                    <param id="0" name="Instance variable">dead</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="8966228947303764" type="Audio">
+                    <param id="0" name="Audio file">moew3</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6157012173000283">
+            <conditions>
+                <condition behavior="Platform" id="5" name="On jump" sid="7692956205641958" type="Player3" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="2932287542067959" type="Player3">
+                    <param id="0" name="Animation">&quot;Jump&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="832612634815738">
+            <conditions>
+                <condition behavior="Platform" id="9" name="On landed" sid="9399800050978877" type="Player3" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="3637070535023226" type="Player3">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>While on floor, keep holding the &quot;run right&quot; control, so the character keeps running.</comment>
+        <event-block sid="1706972895084617">
+            <conditions>
+                <condition behavior="Platform" id="2" name="Is on floor" sid="445536122015399" type="Player4" />
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="342502846373117" type="Player4">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>On any user input at all, make the character jump.</comment>
+        <event-block any="1" sid="941195061253478">
+            <conditions>
+                <condition id="2" name="Key is down" sid="7422262436199682" type="Keyboard">
+                    <param id="0" name="Key">186 (;)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="1272277570819095" type="Player4">
+                    <param id="0" name="Control">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If the player falls off the bottom of the screen, save score.</comment>
+        <event-block sid="8368500411372395">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="6756845788050044" type="Player4">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="3654481321117118" type="Player4">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1499641673162897" type="System">
+                    <param id="0" name="Variable">Player4Distance</param>
+                    <param id="1" name="Value">time - StartTime</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="4959166180910429" type="Player4">
+                    <param id="0" name="Instance variable">dead</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="1029625708365603" type="Audio">
+                    <param id="0" name="Audio file">moew4</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5006082179772671">
+            <conditions>
+                <condition behavior="Platform" id="5" name="On jump" sid="2483235852300558" type="Player4" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="6683897691188302" type="Player4">
+                    <param id="0" name="Animation">&quot;Jump&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1313190947016653">
+            <conditions>
+                <condition behavior="Platform" id="9" name="On landed" sid="7917330209681365" type="Player4" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="6937016839733685" type="Player4">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If all the players fell, game over.</comment>
+        <event-block sid="663136666173396">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="2394746759107359" type="Player1">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="5419091784980266" type="Player2">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="4469737701906976" type="Player3">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="7893065146055844" type="Player4">
+                    <param id="0" name="Instance variable">dead</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="3436682547943658" type="System">
+                    <param id="0" name="Layout">GameOver</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

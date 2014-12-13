@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>MenuEvent</name>
+    <events>
+        <event-block sid="8047120887630566">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="67682334979873" type="System">
+                    <param id="0" name="Interval (seconds)">0.5</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="2621817132502591">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="7345070153820768" type="GoBtn">
+                            <param id="0" name="Instance variable">Scale</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">GoBtn.FaceSize</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set font size" sid="3673090844078124" type="GoBtn">
+                            <param id="0" name="Size (pt)">GoBtn.Scale + 10</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7787738931509809">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="8836209975952398" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set font size" sid="8500567417795485" type="GoBtn">
+                            <param id="0" name="Size (pt)">GoBtn.Scale</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2918458508737707">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="1189783923517442" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="1175982494423476" type="System">
+                    <param id="0" name="Layout">Race</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9327944827233291">
+            <conditions>
+                <condition id="5" inverted="1" name="Is tag playing" sid="4910764244336697" type="Audio">
+                    <param id="0" name="Tag">&quot;Background&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="4979128727028408" type="Audio">
+                    <param id="0" name="Audio file">background</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;Background&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Autorunner</name>
+    <description></description>
+    <version>1.0</version>
+    <author></author>
+    <author-email></author-email>
+    <author-website></author-website>
+    <app-id></app-id>
+    <unique-id>mq4njje893h0</unique-id>
+    <saved-with-version>19000</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>630</width>
+        <height>360</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Hide address bar">No</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use iOS retina display">iPhone only</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="TiledBackground" sid="868122690722982">
+            <plugin id="TiledBg" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="9870783599822767">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <texture original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\starsbackground_milkyv0.2.png" />
+        </object-type>
+        <object-type name="Block" sid="9873981805437328">
+            <plugin id="TiledBg" />
+            <behaviors>
+                <behavior-type name="Solid" sid="2487737208961411">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="4183592134011864">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <texture original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\brick.png" />
+        </object-type>
+        <object-type name="Player1" sid="1605588542431883">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="dead" sid="2511834829998711" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="9745148463181133">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7290924992044429" speed="5">
+                    <frame duration="1" hotspotX="0.515294" hotspotY="0.513889" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\red1.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.897222" />
+                            <point x="0" y="0.886111" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\red2.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.897222" />
+                            <point x="0" y="0.886111" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Jump" pingpong="0" repeatcount="1" repeatto="0" sid="3998949855319509" speed="5">
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="836636262443457">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="DistanceDisplay" sid="9097870224103801">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Mouse" sid="5923282145071248">
+            <plugin id="Mouse" />
+        </object-type>
+        <object-type name="Label" sid="6587367569186121">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="GoBtn" sid="1073124305051316">
+            <plugin id="Text" />
+            <instance-variables>
+                <instance-variable name="Scale" sid="3525281710717912" type="number" />
+            </instance-variables>
+        </object-type>
+        <object-type name="Score1" sid="4395684588049271">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Score2" sid="8446219711001352">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Score3" sid="8693097997123456">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Score4" sid="7244708529107714">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Player2" sid="604818838109192">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="dead" sid="6438783070307295" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="4493049709994861">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3407585050468301" speed="5">
+                    <frame duration="1" hotspotX="0.515294" hotspotY="0.513889" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\green1.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.905556" />
+                            <point x="0" y="0.902778" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\green2.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.905556" />
+                            <point x="0" y="0.902778" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Jump" pingpong="0" repeatcount="1" repeatto="0" sid="1106373210220168" speed="5">
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Player3" sid="1772438797843732">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="dead" sid="1251598024811656" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="6319643280275834">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1200844283873491" speed="5">
+                    <frame duration="1" hotspotX="0.515294" hotspotY="0.513889" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\blue1.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.877778" />
+                            <point x="0" y="0.880556" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\blue2.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.877778" />
+                            <point x="0" y="0.880556" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Jump" pingpong="0" repeatcount="1" repeatto="0" sid="3901704270137364" speed="5">
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Player4" sid="5216086671101434">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="dead" sid="5052396121184194" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="6124489913672305">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="572724223788895" speed="5">
+                    <frame duration="1" hotspotX="0.515294" hotspotY="0.513889" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\yellow1.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.880556" />
+                            <point x="0" y="0.880556" />
+                        </collision-poly>
+                    </frame>
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\yellow2.png">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="1" y="0" />
+                            <point x="1" y="0.880556" />
+                            <point x="0" y="0.880556" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+                <animation framecount="1" loop="0" name="Jump" pingpong="0" repeatcount="1" repeatto="0" sid="3787934041736575" speed="5">
+                    <frame duration="1" hotspotX="0.501176" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MenuBackground" sid="8155967341142582">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7186687098271628" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Philippe\Documents\GitHub\construct2\gamecraft runner\Tmp\starsbackground.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Audio" sid="5201068736030607">
+            <plugin id="Audio" />
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder>
+        <layout>Menu.xml</layout>
+        <layout>Race.xml</layout>
+        <layout>GameOver.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>RaceEvent.xml</event-sheet>
+        <event-sheet>MenuEvent.xml</event-sheet>
+        <event-sheet>GameOverEvent.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Keyboard" uid="5" />
+        <global-instance type="Mouse" uid="12" />
+        <global-instance type="Audio" uid="25">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+                <speed-of-sound>5000</speed-of-sound>
+                <doppler-factor>1</doppler-factor>
+            </properties>
+        </global-instance>
+    </global-instances>
+    <sounds-folder>
+        <file name="moew2.ogg" />
+        <file name="moew3.ogg" />
+        <file name="moew4.ogg" />
+        <file name="moew1.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="background.ogg" />
+    </music-folder>
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>

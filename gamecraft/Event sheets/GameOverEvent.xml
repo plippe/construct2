@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>GameOverEvent</name>
+    <events>
+        <variable constant="0" name="WaitLeft" sid="3298673730216589" static="0" type="number">0</variable>
+        <variable constant="1" name="WaitDuration" sid="13331749033615" static="0" type="number">5</variable>
+        <event-block sid="4586990473301757">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6519751416122604" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2546380719754988" type="System">
+                    <param id="0" name="Variable">WaitLeft</param>
+                    <param id="1" name="Value">WAITDURATION</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="5821747113380414">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4220722095234482" type="System">
+                            <param id="0" name="Variable">Player1Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player2Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="2165877967443398" type="System">
+                            <param id="0" name="Variable">Player1Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player3Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="1105520238314915" type="System">
+                            <param id="0" name="Variable">Player1Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player4Distance</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="4118133699525887" type="Score1">
+                            <param id="0" name="Text">&quot;Player 1 &quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4184749831880192">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5326094592279726" type="System">
+                            <param id="0" name="Variable">Player2Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player1Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="134408437240763" type="System">
+                            <param id="0" name="Variable">Player2Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player3Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8201706485352178" type="System">
+                            <param id="0" name="Variable">Player2Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player4Distance</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="7099244299477201" type="Score1">
+                            <param id="0" name="Text">&quot;Player 2 &quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1591101339560409">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4599743290107532" type="System">
+                            <param id="0" name="Variable">Player3Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player1Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="643056772692637" type="System">
+                            <param id="0" name="Variable">Player3Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player2Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="1915753402574101" type="System">
+                            <param id="0" name="Variable">Player3Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player4Distance</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="6313195901592054" type="Score1">
+                            <param id="0" name="Text">&quot;Player 3 &quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8621992012416665">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="106670814725472" type="System">
+                            <param id="0" name="Variable">Player4Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player1Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8338961732888887" type="System">
+                            <param id="0" name="Variable">Player4Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player2Distance</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="5983534351326335" type="System">
+                            <param id="0" name="Variable">Player4Distance</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">Player3Distance</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="4935433342725701" type="Score1">
+                            <param id="0" name="Text">&quot;Player 4 &quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2916264044960597">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="162106947413744" type="System">
+                    <param id="0" name="Interval (seconds)">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="4857763945769525" type="System">
+                    <param id="0" name="Variable">WaitLeft</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1255250028984488">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="8415529029498342" type="System">
+                    <param id="0" name="Variable">WaitLeft</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="738356500232661" type="System">
+                    <param id="0" name="Layout">Menu</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
